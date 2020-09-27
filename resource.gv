@@ -1,0 +1,173 @@
+digraph {
+    node [fontsize="10px", fontname="IPAGothic", style="filled", fillcolor="snow"]
+
+    subgraph cluster_01 {
+        graph [label="Natural Resource\n天然資源", shape="box"]
+        forest [label="Forest\n森",shape="hexagon"]
+        stone [label="Stone\n岩",shape="hexagon"]
+        iV [label="Iron Vein\n鉄鉱脈",shape="hexagon"]
+        cV [label="Coal Vein\n石炭鉱脈",shape="hexagon"]
+        oV [label="Oil Vein\n石油鉱脈",shape="hexagon"]
+        uV [label="Uranimu Vein\nウラニウム鉱脈",shape="hexagon"]
+        farmland [label="Farm Land\n農地",shape="hexagon"]
+    }
+
+    wc [label="Wood Curving Post\n伐採所", shape="box"]
+    sawmill [label="Saw Mill\n製材所", shape="box"]
+    wood [label="Wood\n原木",shape="oval"]
+    lumber [label="Lumber\n材木",shape="oval",fillcolor="khaki"]
+    forest -> wc -> wood -> sawmill -> lumber
+
+    iM [label="Iron Mine\n鉄鉱山",shape="box"]
+    iO [label="Iron Ore\n鉄鉱石",shape="oval"]
+    iP [label="Iron Processing Plant\n鉄精錬所",shape="box"]
+    iron [label="Iron\n鉄", shape="oval"]
+    iV -> iM -> iO -> iP ->iron
+
+    cM [label="Coal Mine\n石炭鉱山",shape="box"]
+    cO [label="Coal Ore\n石炭鉱石",shape="oval"]
+    cP [label="Coal Processing Plant\n石炭精錬所",shape="box"]
+    coal [label="Coal\n石炭", shape="oval"]
+    cPP [label="Coal Power Plant\n石炭火力発電所", shape="box"]
+    electric [label="Electric Power\n電力", shape="oval", fillcolor="yellow"]
+    cV -> cM -> cO -> cP -> coal -> cPP -> electric
+
+    oM [label="Oil Rig\n油井",shape="box"]
+    oil [label="Crude Oil\n原油",shape="oval"]
+    oP [label="Oil Refinery\n石油精製所",shape="box"]
+    fuel [label="Fuel\n燃料", shape="oval", fillcolor="yellow"]
+    bitumen [label="Bitumen\n瀝青", shape="oval"]
+    ap [label="Asphalt Plant\nアスファルト工場", shape="box"]
+    asphalt [label="Asphalt\nアスファルト", shape="oval",fillcolor="khaki"]
+    
+    oV -> oM -> oil -> oP -> fuel
+    oP -> bitumen -> ap -> asphalt
+
+    gQ [label="Gravel Quarry\n採石場", shape="box"]
+    gravel [label="Gravel\n石", shappe="oval"]
+    gP [label="Gravel Processing Plant\n砕石工場", shape="box"]
+    sand [label="Sand\n砂", shape="oval"]
+
+    stone->gQ->gravel->gP->sand
+    sand -> ap [style="dotted"]
+
+    steelmill [label="Steel Mill\n製鉄所", shape="box"]
+    steel [label="Steel\n鋼鉄", shape="oval",fillcolor="khaki"]
+    iron -> steelmill
+    coal -> steelmill
+    steelmill -> steel
+
+    bf [label="Brick Factory\n煉瓦工場", shape="box"]
+    brick [label="Brick\n煉瓦", shape="oval",fillcolor="khaki"]
+    coal -> bf -> brick
+
+    chemP [label="Chemical Plant\n化学工場", shape="box"]
+    chem  [label="Chemicals\n化学薬品", shaple="oval"]
+    wood -> chemP
+    sand -> chemP [style="dotted"]
+    oil  -> chemP
+    crop -> chemP [color="green"]
+    chemP -> chem
+
+    plasticP [label="Plastic Factory\nブラスチック工場", shape="box"]
+    plastic  [label="Plastic\nブラスチック", shaple="oval"]
+    chem -> plasticP
+    oil -> plasticP
+    plasticP -> plastic
+
+    mechFactory [label="Mechanical Componets Facotry\n機械部品工場", shape="box"]
+    mechComponet [label="Mechanical Componets\n機械部品", shape="oval"]
+    steel -> mechFactory -> mechComponet
+
+    elecFactory [label="Electronic Componets Facotry\n電子部品工場", shape="box"]
+    elecComponent [label="Electronic Componets\n電子部品", shape="oval"]
+
+    chem -> elecFactory
+    plastic -> elecFactory
+    steel -> elecFactory
+    elecFactory -> elecComponent
+
+    elecAssembly [label="Electronic Assembly Hall\n家電組立工場", shape="box"]
+    elecProducts [label="Electronic Products\n家電製品", shape="oval", fillcolor="cyan"]
+
+    elecComponent -> elecAssembly
+    plastic -> elecAssembly
+    mechComponet -> elecAssembly
+    elecAssembly -> elecProducts
+
+    fF [label="Fabric Factory\n織物工場", shape="box"]
+    fabric [label="Fablic\n織物", shape="oval"]
+    cF [label="Clothing Factory\n縫製工場", shape="box"]
+    clothes [label="Clothes\n服", shape="oval",fillcolor="cyan"]
+    crop -> fF  [color="green"]
+    chem -> fF -> fabric -> cF -> clothes
+
+    cementPlant [label="Cement Plant\nセメント工場", shape="box"]
+    cement [label="Cement\nセメント"]
+    sand -> cementPlant [style="dotted"]
+    coal -> cementPlant
+    cementPlant -> cement
+
+    concreatePlant [label="Concreate Plant\nコンクリート工場", shape="box"]
+    concreate [label="Concreate\nコンクリート", fillcolor="khaki"]
+    sand -> concreatePlant [style="dotted"]
+    cement -> concreatePlant
+    concreatePlant -> concreate
+
+    prefabPPlant [label="Prefab Panels Plant\nプレハブパネル工場", shape="box"]
+    prefabP [label="Prefab Panels\nプレハブパネル", fillcolor="khaki"]
+    sand -> prefabPPlant [style="dotted"]
+    cement -> prefabPPlant
+    prefabPPlant -> prefabP
+
+    prefabPPlant [label="Prefab Panels Plant\nプレハブパネル工場", shape="box"]
+
+    agroFarm [label="Agro-Farm\n農園", shape="box"]
+    crop [label="Crop\n農作物", shape="oval"]
+    farmland -> agroFarm -> crop [color="green"]
+
+    livestockFarm [label="Livestock Fram\n畜産場",shape="box"]
+    livestock [label="Livestock\n家畜",shape="oval"]
+    slaughterhouse [label="Slaughterhouse\n食肉加工場",shape="box"]
+    meat [label="Meat\n食肉",shape="oval",fillcolor="cyan"]
+
+    crop -> livestockFarm [color="green"]
+    livestockFarm -> livestock -> slaughterhouse -> meat
+    
+    foodFacotry [label="Food Factory\n食品工場", shape="box"]
+    food [label="Food\n食品", shape="oval", fillcolor="cyan"]
+
+    crop -> foodFacotry [color="green"]
+    foodFacotry -> food
+
+    distillery [label="Distillery\n醸造所", shape="box"]
+    alcohol [label="Alcohol\nアルコール", shape="oval", fillcolor="cyan"]
+
+    crop -> distillery [color="green"]
+    distillery -> alcohol
+
+    vehicleP [label="Vehicle Production Line\n車両製造工場\nRailway Production Line\n列車製造工場\nDry dock\n乾ドック", shape="box",color="red"]
+    vehicle [label="Vehicle\n車両\nRailway\n列車\nShip\n船舶", shape="oval",fillcolor="cyan"]
+    plastic -> vehicleP [color="red"]
+    mechComponet -> vehicleP [color="red"]
+    elecComponent -> vehicleP [color="red"]
+    elecProducts -> vehicleP [color="red"]
+    fabric -> vehicleP [color="red"]
+    steel -> vehicleP [color="red"]
+    vehicleP -> vehicle [color="red"]
+
+    uM [label="Uranimu Mine\nウラン鉱山",shape="box"]
+    uO [label="Uranimu Ore\nウラン鉱石",shape="oval"]
+    uPP [label="Uranium Processing Plant\nウラン処理プラント",shape="box"]
+    uOx [label="Uranium Oxide\n酸化ウラン", shape="oval"]
+    uCP [label="Uranium Conversion Plant\nウラン転換プラント",shape="box"]
+    uF6 [label="UF6\n六フッ化ウラン", shape="oval"]
+    nFF [label="Nuclear Fuel Fabrication\n核燃料工場",shape="box"]
+    nF  [label="Nuclear Fuel\n核燃料",shape="oval"]
+    nPP [label="Nuclear Power Plat\n原子力発電所", shape="box"]
+    electric2 [label="Electric Power\n電力", shape="oval", fillcolor="yellow"]
+    uV -> uM -> uO -> uPP -> uOx -> uCP -> uF6 -> nFF -> nF -> nPP -> electric2 [color="orange"]
+    chem -> uCP
+    chem -> nFF
+
+}
