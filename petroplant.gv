@@ -1,0 +1,40 @@
+digraph {
+    rig1
+    rig2
+    rig3
+    rig4
+    rig5
+    rig6
+    rig7
+    tank1 [shape="cylinder",label="地元産出原油"]
+    tank2 [shape="cylinder",label="瀝青"]
+    tank3 [shape="cylinder",label="燃料"]
+    tank4 [shape="cylinder",label="搬入原油"]
+    factory [label="製油所"]
+    station1 [label="原油搬入・搬出駅"] 
+    station2 [label="燃料・瀝青搬出駅"]
+    train
+
+    rig1 -> tank1 [color="orange"]
+    rig2 -> tank1 [color="orange"]
+    rig3 -> tank1 [color="orange"]
+    rig4 -> tank1 [color="orange"]
+    rig5 -> tank1 [color="orange"]
+    rig6 -> tank1 [color="orange"]
+    rig7 -> tank1 [color="orange"]
+
+    tank1 -> factory [color="orange"]
+    tank1 -> station1 [color="orange"]
+    factory -> tank2 [color="orange"]
+    factory -> tank3 [color="orange"]
+    tank2 -> station2 [color="orange"]
+    tank3 -> station2 [color="orange"]
+
+    tank4 -> factory [color="green"]
+    tank4 -> station1 [color="green"]
+    station1 -> tank4 [color="green"]
+
+    station1 -> train
+    station2 -> train
+    train -> station1
+}
