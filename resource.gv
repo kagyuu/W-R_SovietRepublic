@@ -10,6 +10,7 @@ digraph {
         oV [label="Oil Vein\n石油鉱脈",shape="hexagon"]
         uV [label="Uranimu Vein\nウラニウム鉱脈",shape="hexagon"]
         farmland [label="Farm Land\n農地",shape="hexagon"]
+        bV [label="Bauxite Vein\nボーキサイト鉱脈",shape="hexagon"]
     }
 
     wc [label="Wood Curving Post\n伐採所", shape="box"]
@@ -93,7 +94,7 @@ digraph {
 
     plasticP [label="Plastic Factory\nブラスチック工場", shape="box"]
     plastic  [label="Plastic\nブラスチック", shaple="oval"]
-    chem -> plasticP [label="15t"]
+    chem -> plasticP [color="cyan",fontcolor="cyan",label="15t"]
     oil -> plasticP [label="35t"]
     plasticP -> plastic [label="15t\n(100 workers)"]
 
@@ -105,7 +106,7 @@ digraph {
     elecFactory [label="Electronic Componets Facotry\n電子部品工場", shape="box"]
     elecComponent [label="Electronic Componets\n電子部品", shape="oval"]
 
-    chem -> elecFactory [label="1.2t"]
+    chem -> elecFactory [color="cyan",fontcolor="cyan",label="1.2t"]
     plastic -> elecFactory [label="1.5t"]
     steel -> elecFactory [label="1.5t"]
     elecFactory -> elecComponent [label="3.8t\n(150 workers)"]
@@ -123,7 +124,7 @@ digraph {
     cF [label="Clothing Factory\n縫製工場", shape="box"]
     clothes [label="Clothes\n服", shape="oval",fillcolor="cyan"]
     crop -> fF [color="green",fontcolor="green",label="20t"]
-    chem -> fF [label="0.5t"] 
+    chem -> fF [color="cyan",fontcolor="cyan",label="0.5t"] 
     fF -> fabric [label="5t\n(100 workers)"]
     fabric -> cF [label="2.4t"] 
     cF -> clothes [label="1.2t\n(80 workers)"]
@@ -185,7 +186,7 @@ digraph {
         elecProducts -> vehicleP [label="ex)0t"]
         fabric -> vehicleP [label="ex)1.4t"]
         steel -> vehicleP [label="ex)81t"]
-        vehicleP -> vehicle [label="ex)100 VW beetle\n(5300 workers・day)"]
+        vehicleP -> vehicle [label="ex)VW beetle×100\n(5300 workers・day)"]
     }
 
     uM [label="Uranimu Mine\nウラン鉱山",shape="box"]
@@ -196,25 +197,72 @@ digraph {
     uF6 [label="UF6\n六フッ化ウラン", shape="oval"]
     nFF [label="Nuclear Fuel Fabrication\n核燃料工場",shape="box"]
     nF  [label="Nuclear Fuel\n核燃料",shape="oval"]
-    nPP [label="Nuclear Power Plant\n原子力発電所", shape="box"]
+    nPP1 [label="Single Reactor\nNuclear Power Plant\n原子力発電所\n(RBMK1000初期型)", shape="box"]
     electric2 [label="Electric Power\n電力", shape="oval", fillcolor="yellow"]
-    uNuc [label="Used Nuclear\n核廃棄物", shape="box3d", fontcolor="snow", fillcolor="black"]
+    uNuc1 [label="Used Nuclear\n核廃棄物", shape="box3d", fontcolor="snow", fillcolor="black"]
+    nPP2 [label="Twin Reactor\nNuclear Power Plant\n原子力発電所\n(RBMK1000量産型)", shape="box"]
+    electric3 [label="Electric Power\n電力", shape="oval", fillcolor="yellow"]
+    uNuc2 [label="Used Nuclear\n核廃棄物", shape="box3d", fontcolor="snow", fillcolor="black"]
     {
         edge [color="orange", fontcolor="orange"]
         uV -> uM
-        uM -> uO [label="60t × Quality\n(100 workers)"]
+        uM -> uO [label="75t × Quality\n(100 workers)"]
         uO -> uPP [label="36t"]
-        uPP -> uOx [label="1.7t\n(15 workers)"]
-        uOx -> uCP [label="2t"]
-        uCP -> uF6 [label="0.21t\n(120 workers)"]
+        uPP -> uOx [label="1.7t\n(60 workers)"]
+        uOx -> uCP [label="2.0t"]
+        uCP -> uF6 [label="0.96t\n(80 workers)"]
         uF6 -> nFF [label="0.4t"]
-        nFF -> nF [label="0.095t\n(120 workers)"]
-        nF -> nPP [label="0.04t"]
-        nPP -> electric2  [label="4680MWh\n(60 workers)"]
-        nPP -> uNuc [label="0.02t"]
-        uNuc -> nPP [label="Heavy rad. protected\n一時貯蔵施設(容量3.0t)\n⇒いっぱいになる前に\nマイナス価格で輸出"]
+        nFF -> nF [label="0.095t\n(50 workers)"]
+        nF -> nPP1 [label="0.04t"]
+        nPP1 -> electric2  [label="4680MWh\n(40 workers)"]
+        nPP1 -> uNuc1 [label="0.02t"]
+        uNuc1 -> nPP1 [label="Heavy rad. protected\n一時貯蔵施設(容量3.0t)\n⇒いっぱいになる前に\nマイナス価格で輸出"]
+        nF -> nPP2 [label="0.08t"]
+        nPP2 -> electric3  [label="9360MWh\n(80 workers)"]
+        nPP2 -> uNuc2 [label="0.04t"]
+        uNuc2 -> nPP2 [label="Heavy rad. protected\n一時貯蔵施設(容量3.0t)\n※容量 Single と同じ"]
     }
-    chem -> uCP [label="0.96t"]
-    chem -> nFF [label="0.75t"]
+    chem -> uCP [color="cyan",fontcolor="cyan",label="0.21t"]
+    chem -> nFF [color="cyan",fontcolor="cyan",label="0.75t"]
 
+    bM [label="Bauxite Mine\nボーキサイト鉱山",shape="box"]
+    bO [label="Raw Bauxite\nボーキサイト鉱石",shape="oval"]
+    bP [label="Bauxite Processing Plant\nボーキサイト精錬所",shape="box"]
+    bauxite [label="Bauxite\nボーキサイト", shape="oval"]
+    aluminaP [label="Almina Plant\nアルミナ工場", shape="box"]
+    alumina [label="Aluminium oxide\n酸化アルミニウム", shaple="oval"]
+    aluminiumP [label="Alminium Plant\nアルミニウム工場", shape="box"]
+    aluminium [label="Aluminium\nアルミニウム", shaple="oval"]
+
+    bV -> bM
+    bM -> bO [label="22.5t × Quality\n(45 workers)"]
+    bO -> bP [label="125t"]
+    bP -> bauxite [label="75t\n(25 workers)"]
+
+    bauxite -> aluminaP [label="77t"]
+    coal -> aluminaP [label="29t"]
+    chem -> aluminaP [color="cyan",fontcolor="cyan",label="2.6t"]
+    aluminaP -> alumina [label="33t\n(370 workers)"]
+    alumina -> aluminiumP [label="52t"]
+    chem -> aluminiumP [color="cyan",fontcolor="cyan",label="2.5t"]
+    aluminiumP -> aluminium [label="30t\n(350 workers)"]
+
+    airplaneP [label="Airplane Production Line\n航空機製造工場", shape="box",color="red"]
+    airplane [label="Airplane\n航空機", shape="oval",fillcolor="cyan"]
+    {
+        edge [color="blue",fontcolor="blue"]
+        plastic -> airplaneP [label="ex)0.52t"]
+        mechComponet -> airplaneP [label="ex)14.0t"]
+        elecComponent -> airplaneP [label="ex)2.2t"]
+        elecProducts -> airplaneP [label="ex)0.77t"]
+        fabric -> airplaneP [label="ex)0.004t"]
+        steel -> airplaneP [label="ex)1.7t"]
+        aluminium -> airplaneP [label="ex)25t"]
+
+        airplaneP -> airplane [label="ex) IL18\n(7897 workers・day)\n ※Tu-104 was so dangerous,\n1/5 of them was lost in accident"]
+    }
+
+    electric -> steelmill [color="orange",fontcolor="orange",label="高圧線直結11MVh/day\n(製鉄所には石炭火力発電所\nの併設が必要)"]
+    electric2 -> aluminiumP [color="orange",fontcolor="orange",label="高圧線直結141MVh/day\n(アルミ工場には原発からの\n電力供給が必要)"]
+    electric3 -> aluminiumP [color="orange",fontcolor="orange"]
 }
